@@ -96,23 +96,6 @@ Push-Location build; & $AAPT add a11yhider.apk classes.dex; Pop-Location
 & $JARSIGNER -keystore debug.keystore -storepass android -keypass android build\a11yhider.apk debug
 ```
 
-### Gotchas this project ran into
-
-- **`assets/xposed_init` must use forward slashes** when added with
-  `jar`. Adding it from a Windows-style path (`assets\xposed_init`)
-  produces an entry Vector cannot find.
-- **No BOM in `xposed_init`**: if the file is saved as UTF-8 with a
-  byte-order mark, the class name read from it gets a stray character
-  prefixed, and `ClassNotFoundException` is thrown when the module
-  loads. Write it as UTF-8 **without** BOM.
-- **Non-ASCII characters in `.java` sources** can fail to compile with
-  `javac` on a non-UTF-8 system locale (e.g. Windows Shift-JIS/CP932),
-  even with `-encoding UTF-8` passed — stick to ASCII in source files,
-  or build from a UTF-8 locale.
-- The module needs a `LAUNCHER` activity (see `DummyActivity`) or the
-  manager app will report "module APK not found" even though it is
-  installed correctly.
-
 ## Project layout
 
 ```
