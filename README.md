@@ -1,5 +1,7 @@
 # A11yHider
 
+[日本語](README.ja.md)
+
 A Xposed/LSPosed (Vector) module that hides the presence of accessibility
 services from any app you choose. Some apps refuse to start, or show a
 warning, when they detect an accessibility service is enabled on the
