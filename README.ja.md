@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-特定のアプリから見て「アクセシビリティサービスが一つも有効になっていない」ように
+特定のアプリから「アクセシビリティサービスが一つも有効になっていない」ように
 見せかける Xposed/LSPosed（Vector）モジュールです。アクセシビリティサービスが
 有効になっていることを検知すると起動を拒否したり警告を出したりするアプリが
 ありますが、そのサービスがランチャーのカスタマイズやテーマ関連など、
@@ -100,25 +100,6 @@ Push-Location build; & $AAPT add a11yhider.apk classes.dex; Pop-Location
 # 6. 署名する（ローカル/サイドロード用途であればデバッグキーストアで十分）
 & $JARSIGNER -keystore debug.keystore -storepass android -keypass android build\a11yhider.apk debug
 ```
-
-### 開発中にハマった点
-
-- **`assets/xposed_init` の追加にはスラッシュ区切りのパスを使う**
-  必要があります。`jar` コマンドで Windows 形式のパス
-  (`assets\xposed_init`) から追加すると、Vector が見つけられない
-  エントリになってしまいます。
-- **`xposed_init` に BOM を含めない**: UTF-8 with BOM で保存すると、
-  そこから読み取ったクラス名の先頭に余分な文字が付与され、モジュール
-  読み込み時に `ClassNotFoundException` が発生します。BOM なしの
-  UTF-8 で保存してください。
-- **`.java` ソース内の非 ASCII 文字**は、システムロケールが UTF-8
-  でない環境（Windows の Shift-JIS/CP932 など）では、`-encoding UTF-8`
-  を指定していても `javac` のコンパイルに失敗することがあります。
-  ソースコードは ASCII のみにするか、UTF-8 ロケールの環境でビルド
-  してください。
-- モジュールには `LAUNCHER` アクティビティ（`DummyActivity` を参照）
-  が必要です。これがないと、正しくインストールされていても管理アプリ
-  側で「読み込むAPKが見つかりません」と表示されます。
 
 ## プロジェクト構成
 
