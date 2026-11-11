@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="jp.a11yhider"
+    android:versionCode="3"
+    android:versionName="2.0">
+
+    <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="34" />
+
+    <application
+        android:hasCode="true"
+        android:label="A11yHider">
+
+        <activity
+            android:name="jp.a11yhider.DummyActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="93" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="Hide all accessibility services from target apps" />
+        <meta-data
+            android:name="xposedscope"
+            android:resource="@array/xposed_scope" />
+    </application>
+</manifest>

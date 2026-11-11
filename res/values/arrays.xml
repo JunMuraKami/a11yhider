@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      No default scope is shipped. Add target apps from your
+      LSPosed/Vector manager's module scope screen instead of
+      rebuilding this file.
+    -->
+    <string-array name="xposed_scope">
+        <item></item>
+    </string-array>
+</resources>

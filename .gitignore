@@ -1,0 +1,5 @@
+build/
+*.apk
+*.dex
+*.keystore
+tmp_assets/
