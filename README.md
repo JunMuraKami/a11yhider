@@ -48,6 +48,15 @@ service that the target app would also object to.
 No rebuild is needed to add or remove target apps — scope is managed
 entirely from the manager app's UI.
 
+> **First-time activation may need a reboot.** Enabling the module and
+> adding a target app right after a fresh install sometimes does not
+> take effect until the device is rebooted once — this showed up during
+> testing after a clean install (module not previously registered with
+> the framework). Toggling scope on a module that was already active
+> before generally applies live after a force-stop. If a target app
+> still isn't hidden from accessibility checks after force-stopping it,
+> reboot once and try again.
+
 ## Building
 
 The project is deliberately dependency-free (no Gradle) so it can be
